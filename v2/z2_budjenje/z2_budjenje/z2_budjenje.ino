@@ -79,11 +79,12 @@ void setWakeUpTime()
   }
 
   String input = Serial.readStringUntil('\n');
-  Serial.print("You entered: ");
+  Serial.println("You entered: ");
   Serial.println(input);
+  Serial.println();
 
   t.tm_mday = input.substring(0, 2).toInt();
-  t.tm_mon  = input.substring(3, 5).toInt();
+  t.tm_mon  = input.substring(3, 5).toInt() - 1;
   t.tm_year = input.substring(6, 10).toInt() - 1900;
   t.tm_hour = input.substring(11, 13).toInt() - 1;
   t.tm_min  = input.substring(14, 16).toInt();
@@ -91,7 +92,7 @@ void setWakeUpTime()
   when_to_turnON_ESP  = mktime(&t);
 
   char timeToString[24];
-  sprintf(timeToString, "%d %d %d %d %d %d", t.tm_mday,t.tm_mon,t.tm_year + 1900,t.tm_hour,t.tm_min,t.tm_sec);
+  sprintf(timeToString, "%d.%d.%d %d:%d:%d", t.tm_mday,t.tm_mon+1,t.tm_year + 1900,t.tm_hour,t.tm_min,t.tm_sec);
   Serial.println(timeToString);
   Serial.println();
 

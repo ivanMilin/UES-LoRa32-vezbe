@@ -59,7 +59,7 @@ void setup()
     }
 
     // MORAS DA PROMENIS SSID i PASSWORD !!!!
-    wifiMulti.addAP("prestige", "mikro1231");
+    wifiMulti.addAP("milin", "12345678");
 
 
     // wait for WiFi connection
@@ -160,39 +160,39 @@ void setup()
 
 void loop() 
 {
-    if(!digitalRead(0) && allowButton)
-    {
-      allowButton = 0;
-      counter ++;
+    Heltec.display->clear();
+    Heltec.display->setFont(ArialMT_Plain_10);
+    
+    if (digitalRead(0) == LOW) {
+        allowButton = !allowButton;
+        delay(500); // debounce delay
     }
-
-    if(digitalRead(0))
+    
+    if (allowButton == 0) 
     {
-      allowButton = 1;
+        //Serial.printf("Usao sam u if");
+        Heltec.display->clear();
+        Heltec.display->drawString(0, 0, "Current weather(Novi Sad)");
+        Heltec.display->drawString(0, 10, "Current temp/max/min:"); 
+        Heltec.display->drawString(0, 20, "    " + String(currentTemp_today) + "/" + String(maxTemp_today)+ "/"+ String(minTemp_today) +"°C");
+        Heltec.display->drawString(0, 30, "Humidity: " + String(humidity_today) + "%");
+        Heltec.display->drawString(0, 40, "Pressure: " + String(pressure_today) + "hPa");
+        Heltec.display->drawString(0, 50, "Wind Speed: " + String(windSpeed_today) + "mps");
+        //Heltec.display->drawString(0, 50, "Counter: " + String(counter));
+    } 
+    else 
+    {
+        //Serial.printf("Usao sam u else");
+        Heltec.display->clear();
+        Heltec.display->drawString(0, 0, "Tumorrow weather(Novi Sad)");
+        Heltec.display->drawString(0, 10, "Current temp/max/min:");
+        Heltec.display->drawString(0, 20, "    " + String(currentTemp_tomorrow) + "/" + String(maxTemp_tomorrow)+ "/"+ String(minTemp_tomorrow) +"°C");
+        Heltec.display->drawString(0, 30, "Humidity: " + String(humidity_tomorrow) + "%");
+        Heltec.display->drawString(0, 40, "Pressure: " + String(pressure_tomorrow) + "hPa");
+        Heltec.display->drawString(0, 50, "Wind Speed: " + String(windSpeed_tomorrow) + "mps");
+        //Heltec.display->drawString(0, 50, "Counter: " + String(counter));
     }
-
-    /*
-    if(counter % 2 == 0)
-    {
-      Heltec.display->clear();
-      Heltec.display->setFont(ArialMT_Plain_10);
-      Heltec.display->drawString(0, 0, "Current weather in Novi Sad:");
-      Heltec.display->drawString(0, 10, "Current temp/max/min: " + String(currentTemp_today) + "/" + String(maxTemp_today)+ "/"+ String(minTemp_today) +"°C");
-      Heltec.display->drawString(0, 20, "Humidity: " + String(humidity_today) + "%");
-      Heltec.display->drawString(0, 30, "Pressure: " + String(pressure_today) + "hPa");
-      Heltec.display->drawString(0, 40, "Wind Speed: " + String(windSpeed_today) + "mps");
-      Heltec.display->drawString(0, 50, "Counter: " + String(counter));
-    } 
-    else
-    {
-      Heltec.display->clear();
-      Heltec.display->setFont(ArialMT_Plain_10);
-      Heltec.display->drawString(0, 0, "Tumorrow weather in Novi Sad:");
-      Heltec.display->drawString(0, 10, "Current temp/max/min: " + String(currentTemp_tomorrow) + "/" + String(maxTemp_tomorrow)+ "/"+ String(minTemp_tomorrow) +"°C");
-      Heltec.display->drawString(0, 20, "Humidity: " + String(humidity_tomorrow) + "%");
-      Heltec.display->drawString(0, 30, "Pressure: " + String(pressure_tomorrow) + "hPa");
-      Heltec.display->drawString(0, 40, "Wind Speed: " + String(windSpeed_tomorrow) + "mps");
-      Heltec.display->drawString(0, 50, "Counter: " + String(counter));
-    } 
-    */
+    
+    Heltec.display->display();
+    delay(1000); // delay to avoid rapid screen updates
 }

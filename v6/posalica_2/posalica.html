@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Moja druga web stranica</title>
+</head>
+
+<body>
+    <h3>Setup</h3>
+    <p id="setup">...</p><!-- Ove tri tacke ce biti zamenjene kad se pokrene javascript-->
+    <h3>Delivery</h3>
+    <p id="delivery">...</p>
+    <script>
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () 
+        {
+            if (this.readyState == 4 && this.status == 200) 
+            {
+                console.log(xhttp.responseText);
+                var obj = JSON.parse(xhttp.responseText);
+                document.getElementById("setup").innerHTML = obj["setup"];
+                document.getElementById("delivery").innerHTML = obj["delivery"];
+            }
+        };
+        xhttp.open("GET", "https://v2.jokeapi.dev/joke/Any?type=twopart", true);
+        xhttp.send();
+    </script>
+</body>
+
+</html>

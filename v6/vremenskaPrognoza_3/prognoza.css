@@ -1,0 +1,28 @@
+html
+{
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: powderblue;
+}
+
+table
+{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+td, th
+{
+    text-align: left;
+    padding: 8px;
+}
+
+tr :nth-child(even)
+{
+    background-color: #dddddd;
+}
+
+tr :nth-child(odd)
+{
+    background-color: #eeeeee;
+}

@@ -6,6 +6,7 @@
     <title>Vremenska prognoza</title>
     <link rel="stylesheet" href="prognoza.css">
     <script src="prognoza.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 </head>
 <body>
     <h1>Meteoroloski podaci</h1>
@@ -40,8 +41,10 @@
         <img src="" alt="Ovde ide slicica" id="ikonica">
         <p id = "weather_status">...</p>
 
+        <canvas id="myChart" width="400" height="200"></canvas>
+        <script type="text/javascript" src="grafik.js"></script>
+
         <script>document.getElementById("vremenski_podaci").style.display="none"</script>
-    
     </div>
 </body>
 </html>

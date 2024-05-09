@@ -26,3 +26,10 @@ tr :nth-child(odd)
 {
     background-color: #eeeeee;
 }
+
+canvas 
+{
+    display: block; /* Ensures canvas behaves like a block element */
+    margin: 0 auto; /* Centers the canvas horizontally */
+    background-color: white;
+}
